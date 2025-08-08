@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Translation Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Translation Result</h1>
+
+    <section class="card">
+      <h3>Detected Text</h3>
+      <pre class="text-block">{{ original_text }}</pre>
+    </section>
+
+    <section class="card">
+      <h3>Translated ({{ language }})</h3>
+      <pre class="text-block">{{ translated_text }}</pre>
+    </section>
+
+    <a class="btn" href="{{ url_for('index') }}">Translate another image</a>
+
+    <footer>
+      <small>Tip: crop only the area with text before uploading for better accuracy.</small>
+    </footer>
+  </div>
+</body>
+</html>

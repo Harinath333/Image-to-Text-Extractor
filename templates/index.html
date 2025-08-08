@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hack My Resume — Image to Multilingual Text</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Image → Multilingual Text</h1>
+    <p class="subtitle">Upload an image containing text and translate it to your language of choice.</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-area">
+        {% for category, message in messages %}
+          <div class="flash {{category}}">{{ message }}</div>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('translate') }}" method="post" enctype="multipart/form-data" id="uploadForm">
+      <label class="file-label">
+        <input type="file" name="image" accept="image/*" required>
+        <span>Select image</span>
+      </label>
+
+      <label for="language">Translate to:</label>
+      <select name="language" id="language">
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+        <option value="ja">Japanese</option>
+        <option value="te">Telugu</option>
+        <option value="fr">French</option>
+        <option value="es">Spanish</option>
+        <!-- add more languages as desired -->
+      </select>
+
+      <button type="submit" class="btn">Extract & Translate</button>
+    </form>
+
+    <footer>
+      <small>Built with Flask · OCR by Tesseract · Translation by deep-translator</small>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
